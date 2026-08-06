@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <defs>
+    <linearGradient id="n-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#863bff" />
+      <stop offset="100%" stop-color="#00f2fe" />
+    </linearGradient>
+  </defs>
+  <!-- Rounded card background -->
+  <rect width="100" height="100" rx="24" fill="#09090b" />
+  <!-- Sleek modern letter N -->
+  <path d="M 30 75 V 25 H 43 L 57 58 V 25 H 70 V 75 H 57 L 43 42 V 75 H 30 Z" fill="url(#n-grad)" />
+</svg>
