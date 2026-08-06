@@ -7,31 +7,31 @@ on:
 
 jobs:
   notify-discord:
-    if: ${{ github.event.workflow_run.conclusion == 'failure'}}
-    runs-on: ubuntu-lastest
+    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+    runs-on: ubuntu-latest
     env:
       DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
-      REPO: ${{ github.repository}}
-      BRANCH: ${{github.event.workflow_run.head_branch}}
-      ACTOR: ${{github.event.workflow_run.actor.login}}
-      LOG_URL: ${{github.event.workflow_run.html_url}}
+      REPO: ${{ github.repository }}
+      BRANCH: ${{ github.event.workflow_run.head_branch }}
+      ACTOR: ${{ github.event.workflow_run.actor.login }}
+      LOG_URL: ${{ github.event.workflow_run.html_url }}
 
     steps:
       - name: Send Discord Notification
         run: |
-          if [ -z "$DISCORD_WEBHOOK_URL"]; then
+          if [ -z "$DISCORD_WEBHOOK_URL" ]; then
             echo "DISCORD_WEBHOOK_URL is empty. Skip notify step."
             exit 0
           fi
 
           payload=$(cat << PAYLOAD
           {
-            "username": CI Bot Check
-            "content": "CI workflow failed\\nRepo: ${REPO}\\nBranch: ${BRANCH}\\n Triggered by: ${ACTOR}\\nLogs: ${LOG_URL}"
+            "username": "CI Bot Check",
+            "content": "CI workflow failed\nRepo: ${REPO}\nBranch: ${BRANCH}\nTriggered by: ${ACTOR}\nLogs: ${LOG_URL}"
           }
           PAYLOAD
           )
 
-          curl -sS -X POST "DISCORD_WEEBHOOK_URL" \
+          curl -sS -X POST "$DISCORD_WEBHOOK_URL" \
             -H "Content-Type: application/json" \
             -d "$payload"
