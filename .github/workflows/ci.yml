@@ -8,7 +8,7 @@ on:
 
 jobs:
   fronted-ci:
-    runs-on: ubuntu-lastes
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
